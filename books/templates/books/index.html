@@ -1,5 +1,37 @@
 {% extends 'base.html' %}
-
+{% load bootstrap5 %}
 {% block main %}
 <h1>Simón</h1>
+{% for book in books %}
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">
+      {{book.name}}
+    </h4>
+    <h5 class="card-subtitle">
+      {{book.author}} - {{book.price}}
+    </h5>
+    <p class="card-text">
+      Descargar archivo <a href="/media/{{book.preview}}">{{book.preview}} aquí.</a>
+    </p>
+  </div>
+
+</div>
+{% endfor %}
+{% if formulario.errors %}
+<div class="alert alert-danger">
+  {{formulario.errors}}
+</div>
+{% endif %}
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {% bootstrap_form formulario %}
+
+  <input type="submit" value="Agregar" class="btn btn-primary">
+
+
+
+</form>
+
+
 {% endblock %}
