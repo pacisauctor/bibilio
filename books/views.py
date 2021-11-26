@@ -7,12 +7,12 @@ def index(request):
     if request.method =="GET":
         print("GET method")
     else:
+        print(request.POST)
         formulario = BookForm(request.POST, request.FILES)
         if formulario.is_valid():
             formulario.save()
         else:
             print("Algo pasó")
-            print(request.POST)
 
 
         print("POST method")

@@ -6,6 +6,10 @@ name = "pypi"
 [packages]
 django = "*"
 django-bootstrap-v5 = "*"
+django-3-jet = {file = "https://github.com/Barukimang/django-jet/archive/dev.zip"}
+google-api-python-client = "==1.4.1"
+django-extensions = "*"
+pydotplus = "*"
 
 [dev-packages]
 

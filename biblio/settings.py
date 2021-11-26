@@ -27,10 +27,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 # Application definition
 
 INSTALLED_APPS = [
+    'jet.dashboard',
+    'jet',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'books.apps.BooksConfig',
     'bootstrap5',
+    'django_extensions',
+
 ]
 
 MIDDLEWARE = [

@@ -20,6 +20,7 @@ class Reader(models.Model):
     first_name = models.CharField(verbose_name="Nombres", max_length=50)
     last_name = models.CharField(verbose_name="Apellidos", max_length=50)
     readed_books = models.ManyToManyField(Book, related_name="readers")
+    
 
     def __str__(self):
         return self.first_name + " " + self.last_name
