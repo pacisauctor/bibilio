@@ -2,6 +2,9 @@
 {% load bootstrap5 %}
 {% block main %}
 <h1>Simón</h1>
+<a href="{% url "readers:new" %}">Agregar curso</a>
+<a href="{% url "readers:list" %}">Ver cursos</a>
+
 {% for book in books %}
 <div class="card">
   <div class="card-body">

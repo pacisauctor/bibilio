@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+{% block main %}
+<p>
+    <a href="{% url "readers:new" %}">Agregar curso</a>
+</p>
+
+<ul>
+    {% for reader in object_list %}
+        <li>
+            <p>{{ reader.first_name }} {{ reader.last_name }}</p>
+            <p>
+                <a href="{% url "readers:detail" reader.id %}">Ver</a> | 
+                <a href="{% url "readers:edit" reader.id %}">Editar</a> | 
+                <a href="{% url "readers:delete" reader.id %}">Borrar</a> 
+            </p>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
