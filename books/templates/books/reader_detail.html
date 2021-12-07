@@ -1,9 +1,1 @@
-{% extends 'base.html' %}
-{% load bootstrap5 %}
-{% block main %}
-<p>
-    <a href="{% url "readers:list" %}">Regresar</a>
-</p>
-
 <p>{{ reader.first_name }} {{ reader.last_name }}</p>
-{% endblock %}

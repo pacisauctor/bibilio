@@ -2,7 +2,7 @@
 {% load bootstrap5 %}
 {% block main %}
 <p>
-    <a href="{% url "readers:new" %}">Agregar curso</a>
+    <a href="{% url 'readers:new' %}">Agregar curso</a>
 </p>
 
 <ul>
@@ -10,11 +10,66 @@
         <li>
             <p>{{ reader.first_name }} {{ reader.last_name }}</p>
             <p>
-                <a href="{% url "readers:detail" reader.id %}">Ver</a> | 
-                <a href="{% url "readers:edit" reader.id %}">Editar</a> | 
-                <a href="{% url "readers:delete" reader.id %}">Borrar</a> 
+                <a href="{% url 'readers:detail' reader.id %}">Ver</a> | 
+                <a href="{% url 'readers:edit' reader.id %}">Editar</a> | 
+                <a href="{% url 'readers:delete' reader.id %}">Borrar</a> 
             </p>
+            <div class="card">
+                <div class="card-body">
+                    <h2>Modales</h2>
+
+                    <button type="button" class="btn btn-primary" 
+                            data-urlpage="{% url 'readers:detail' reader.id %}"
+                            onclick="loadContent(this)" > Ver </button>
+                    <button type="button" class="btn btn-warning" 
+                            data-urlpage="{% url 'readers:edit' reader.id %}"
+                            onclick="loadContent(this)" > Editar </button>
+
+                    <button type="button" class="btn btn-danger" 
+                            data-urlpage="{% url 'readers:delete' reader.id %}"
+                            onclick="loadContent(this)" > Eliminar </button>
+                </div>
+            </div>
         </li>
     {% endfor %}
 </ul>
+
+    <!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="modalTemplate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalTemplateLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTemplateLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="contenido-modal-template">
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+<script>
+    const myModal = new bootstrap.Modal(document.getElementById('modalTemplate'), [])
+    const contentModel = document.querySelector("#contenido-modal-template")
+    const loadContent= (element) =>{
+        Swal.showLoading()
+
+        let url = element.dataset.urlpage;
+        fetch(url)
+        .then(response => response.text())
+        .then(data => {
+            console.log(data)
+            contentModel.innerHTML = data
+            const form = contentModel.querySelector("form")
+            if(form){form.setAttribute("action", url)}
+            Swal.close()
+            myModal.show()
+        });
+    }
+</script>
 {% endblock %}

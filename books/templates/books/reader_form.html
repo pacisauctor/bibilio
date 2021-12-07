@@ -1,13 +1,6 @@
-{% extends 'base.html' %}
 {% load bootstrap5 %}
-{% block main %}
-<p>
-    <a href="{% url "readers:new" %}">Agregar curso</a>
-</p>
 <form method="post">
     {% csrf_token %}
     {% bootstrap_form form %}
     <input type="submit" value="Submit" class="btn btn-primary"/>
 </form>
-
-{% endblock %}
