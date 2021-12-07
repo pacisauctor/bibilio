@@ -58,12 +58,10 @@
     const contentModel = document.querySelector("#contenido-modal-template")
     const loadContent= (element) =>{
         Swal.showLoading()
-
         let url = element.dataset.urlpage;
         fetch(url)
         .then(response => response.text())
         .then(data => {
-            console.log(data)
             contentModel.innerHTML = data
             const form = contentModel.querySelector("form")
             if(form){form.setAttribute("action", url)}
